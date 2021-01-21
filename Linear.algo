@@ -1,0 +1,148 @@
+ALGORITHM algorithm_name
+VAR 
+
+    tab : ARRAY_OF INTEGER[5];
+    pos,elt : INTEGER;
+    a : ARRAY_OF INTEGER[M][N];
+    b : ARRAY_OF INTEGER[M][O];
+    c : ARRAY_OF INTEGER[M][O];
+            str: STRING[]:= "   GOMYCODE"
+   str1,str2:String[50];
+        Person :	STRUCT
+                            cin : INTEGER;
+                            name : STRING;
+                            age: INTEGER;
+                        END_STRUCT
+        tab : ARRAY_OF Person[10];  
+     state_stack : CHAR; 
+    c : CHAR := ' ';
+    stk : STACK;
+    wrong : BOOLEAN := FALSE;
+    htab:HASH_TABLE<INTEGER,STRING>
+
+    // 7 linked list
+    List :	STRUCT
+     data : INTEGER; 
+     next : ^List; 
+                        
+                    END_STRUCT
+
+    first: ^List :=NULL 
+    p: ^List :=NULL 
+    c:CHAR;
+    i:INTEGER:=0;                
+
+BEGIN
+
+    FOR i FROM 0 TO tab.length-1   DO
+        read(tab[i])
+    END_FOR
+      j := tab.length-1;
+    WHILE (j >= pos) DO
+        tab[j+1] := tab[j]; 
+        j := j-1;
+    END_WHILE
+
+    tab[pos] := elt;
+
+    FOR i FROM 0 TO M-1   DO
+        FOR j FROM 0 TO N-1   DO
+            read(tab[i][j])
+        END_FOR
+    END_FOR
+
+    FOR i FROM 0 TO M-1  DO
+        FOR j FROM 0 TO O-1  DO
+            FOR k FROM 0 TO N-1  DO
+                c[i][j]:=c[i][j]+a[i][k]*b[k][j]
+            END_FOR
+        END_FOR
+    END_FOR
+
+    IF (str1.length<>str2.length) THEN
+        write("the strings are not equal")
+    ELSE
+        str1:=toUpperCase(str1)
+        str2:=toUpperCase(str2)
+
+        FOR i FROM 0 TO str1.length-1   DO
+            IF (str1[i]<>str2[i]) THEN
+                BREAK;
+            END_IF
+        END_FOR
+        IF (i=str1.length-1) THEN
+            write("the strings are  equal")
+        ELSE
+            write("the strings are not equal")
+        END_IF
+    END_IF
+    
+    FOR i FROM 0 TO tab.length-1   DO
+        IF (tab[i].cin=2) THEN
+            namePerson:=tab[i].name
+        END_IF
+    END_FOR
+
+    WHILE (c <> '#' AND NOT wrong) DO
+        Read(c);
+        SWITCH (c) DO
+            case '[': 
+            case '{': 
+            case '(': stk.push(c);
+                            state_stack := stk.peek(); 
+                            Write(state_stack);
+                            BREAK;
+            case ']': IF (stk.peek()='[') THEN
+                                state_stack := stk.pop(); 
+                                Write(state_stack);
+                            ELSE
+                                wrong := TRUE;
+                            END_IF  
+                            BREAK;
+            case ')': IF (stp.peek()='(') THEN
+                                state_stack := stk.pop(); 
+                                Write(state_stack);
+                            ELSE
+                                wrong := TRUE;    
+                            END_IF  
+                            BREAK;
+            case '}': IF (stp.peek()='{') THEN
+                                state_stack := stk.pop(); 
+                                Write(state_stack);
+                            ELSE
+                                wrong := TRUE;
+                            END_IF  
+                            BREAK;
+                            
+        END_SWITCH
+
+        
+    END_WHILE
+
+    IF (stk.isEmpty() AND NOT wrong) THEN
+        Write("Empty stack, so brackets match.");
+    ELSE
+        Write("Stack not empty, so brackets don’t match.");
+    END_IF
+    htab.insert(0,"zero")
+    htab.insert(1,"one");
+    htab.insert(2,"two");
+    htab.insert(3,"three");
+
+    htab.lookup(0); 
+    htab.lookup(5); 
+
+    htab.get(0); 
+
+    htab.delete(0);
+    WHILE (i<3) DO
+        read(c)
+        p:=create(List)   
+        p^.data:=c;
+       p^.next:=first 
+       first:=p
+
+    END_WHILE
+
+
+END
